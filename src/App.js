@@ -3,6 +3,7 @@ import './App.css';
 import ShowBookmarks from './ShowBookmarks';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CreateBookmarks from './CreateBookmarks';
+import UpdateBookmarks from './UpdateBookmarks.js';
 
 class App extends Component {
     render() {
@@ -27,6 +28,8 @@ class App extends Component {
                         <Route exact path="/" />
                         <Route path="/bookmarks/show" component={ShowBookmarks} />
                         <Route path="/bookmarks/create" component={CreateBookmarks} />
+                        <Route path="/bookmarks/edit/:id" component={UpdateBookmarks} />
+                        {/* <Route path="/bookmarks/delete/:id" component={UpdateBookmarks} /> */}
                     </div>
                 </Router>
             </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Constant from './Constant.js'
 
-class CreateBookmarks extends Component {
+class UpdateBookmarks extends Component {
 
     constructor(props) {
         super(props);
@@ -9,11 +9,26 @@ class CreateBookmarks extends Component {
             name: '',
             url: '',
             description: '',
-            sort_order: null
+            sort_order: ''
         };
 
+        this.fetchBookmark();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    fetchBookmark() {
+        var url = Constant.apiURL + '/bookmarks/edit/' + this.props.match.params.id;
+        fetch(url)
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    name: json.name,
+                    url: json.url,
+                    description: json.description,
+                    sort_order: json.sort_order
+                })
+            })
     }
 
     handleChange(event) {
@@ -22,10 +37,10 @@ class CreateBookmarks extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        
-        var url = Constant.apiURL + '/bookmarks/store';
+
+        var url = Constant.apiURL + '/bookmarks/edit/' + this.props.match.params.id;;
         fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(this.state),
             headers: {
                 'Content-Type': 'application/json'
@@ -36,8 +51,9 @@ class CreateBookmarks extends Component {
     }
 
     render() {
+
         return (
-            <div className="CreateBookmarks">
+            <div className="UpdateBookmarks">
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label>
@@ -74,4 +90,4 @@ class CreateBookmarks extends Component {
 
 }
 
-export default CreateBookmarks;
+export default UpdateBookmarks;
