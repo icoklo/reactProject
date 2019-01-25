@@ -31,7 +31,7 @@ class ShowBookmarks extends Component {
     }
 
     deleteBookmark(bookmarkID) {
-        alert("Brisem");
+        //alert("Brisem");
 
         var url = Constant.apiURL + '/bookmarks/delete/' + bookmarkID;
         fetch(url, {
