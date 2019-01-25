@@ -29,7 +29,6 @@ class App extends Component {
                         <Route path="/bookmarks/show" component={ShowBookmarks} />
                         <Route path="/bookmarks/create" component={CreateBookmarks} />
                         <Route path="/bookmarks/edit/:id" component={UpdateBookmarks} />
-                        {/* <Route path="/bookmarks/delete/:id" component={UpdateBookmarks} /> */}
                     </div>
                 </Router>
             </div>

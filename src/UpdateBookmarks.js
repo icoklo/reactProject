@@ -46,7 +46,9 @@ class UpdateBookmarks extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
+            .then( () => {
+                this.props.history.push('/bookmarks/show');
+            })
             .catch(error => console.error('Error:', error));
     }
 

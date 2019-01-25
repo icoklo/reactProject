@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Constant from './Constant.js'
 import { Link } from "react-router-dom";
+import { Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 
 class ShowBookmarks extends Component {
 
@@ -35,9 +37,11 @@ class ShowBookmarks extends Component {
         fetch(url, {
             method: 'DELETE',
         }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
+            .then(() => {
+                this.props.history.push('/bookmarks/show');
+            })
             .catch(error => console.error('Error:', error));
-
+        
         this.getAllBookmarks();
     }
 
@@ -46,7 +50,7 @@ class ShowBookmarks extends Component {
 
         return (
             <div className="ShowBookmarks">
-                <table>
+                <Table dark>
                     <thead>
                         <tr>
                             <th>Redni broj</th>
@@ -59,7 +63,7 @@ class ShowBookmarks extends Component {
                     <tbody>
                         {
                             items.map(item => (
-                                <tr>
+                                <tr key={item.id}>
                                     <td> {item.id} </td>
                                     <td> {item.name} </td>
                                     <td> {item.description} </td>
@@ -67,15 +71,15 @@ class ShowBookmarks extends Component {
                                         <Link to={"/bookmarks/edit/" + item.id}>Uredi</Link>
                                     </td>
                                     <td>
-                                        <button onClick={this.deleteBookmark.bind(this, item.id)}>
+                                        <Button onClick={this.deleteBookmark.bind(this, item.id)} color="link">
                                             Obrisi
-                                        </button>
+                                        </Button>
                                     </td>
                                 </tr>
                             ))
                         }
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }
