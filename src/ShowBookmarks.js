@@ -38,11 +38,9 @@ class ShowBookmarks extends Component {
             method: 'DELETE',
         }).then(res => res.json())
             .then(() => {
-                this.props.history.push('/bookmarks/show');
+                this.getAllBookmarks();
             })
             .catch(error => console.error('Error:', error));
-        
-        this.getAllBookmarks();
     }
 
     render() {
