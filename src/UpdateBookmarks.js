@@ -35,7 +35,6 @@ class UpdateBookmarks extends Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
 
         var url = process.env.REACT_APP_API_URL + '/bookmarks/edit/' + this.props.match.params.id;;
         fetch(url, {
