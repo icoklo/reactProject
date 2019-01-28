@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Constant from './Constant.js'
 
 class CreateBookmarks extends Component {
 
@@ -23,7 +22,7 @@ class CreateBookmarks extends Component {
     handleSubmit(e) {
         e.preventDefault();
         
-        var url = Constant.apiURL + '/bookmarks/store';
+        var url = process.env.REACT_APP_API_URL + '/bookmarks/store';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(this.state),

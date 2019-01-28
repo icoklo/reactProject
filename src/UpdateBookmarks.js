@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Constant from './Constant.js'
 
 class UpdateBookmarks extends Component {
 
@@ -18,7 +17,7 @@ class UpdateBookmarks extends Component {
     }
 
     fetchBookmark() {
-        var url = Constant.apiURL + '/bookmarks/edit/' + this.props.match.params.id;
+        var url = process.env.REACT_APP_API_URL + '/bookmarks/edit/' + this.props.match.params.id;
         fetch(url)
             .then(res => res.json())
             .then(json => {
@@ -38,7 +37,7 @@ class UpdateBookmarks extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        var url = Constant.apiURL + '/bookmarks/edit/' + this.props.match.params.id;;
+        var url = process.env.REACT_APP_API_URL + '/bookmarks/edit/' + this.props.match.params.id;;
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify(this.state),

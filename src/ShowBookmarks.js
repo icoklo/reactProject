@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Constant from './Constant.js'
 import { Link } from "react-router-dom";
 import { Button } from 'reactstrap';
 import { Table } from 'reactstrap';
@@ -21,7 +20,7 @@ class ShowBookmarks extends Component {
     }
 
     getAllBookmarks() {
-        fetch(Constant.apiURL + '/bookmarks/all')
+        fetch(process.env.REACT_APP_API_URL + '/bookmarks/all')
             .then(res => res.json())
             .then(json => {
                 this.setState({
@@ -33,7 +32,7 @@ class ShowBookmarks extends Component {
     deleteBookmark(bookmarkID) {
         //alert("Brisem");
 
-        var url = Constant.apiURL + '/bookmarks/delete/' + bookmarkID;
+        var url = process.env.REACT_APP_API_URL + '/bookmarks/delete/' + bookmarkID;
         fetch(url, {
             method: 'DELETE',
         }).then(res => res.json())
